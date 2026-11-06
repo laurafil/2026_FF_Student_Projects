@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
 
 data = {
     "hour": [
@@ -113,3 +115,19 @@ for i in range(len(df)):
 core = pd.DataFrame(results_list)
 print("\nGALUTINĖ LENTELĖ:")
 print(core)
+
+#making the plot
+plt.plot(df['hour'], df['gliukose_mg_dl'], marker='o', markersize=2, linestyle='-')
+plt.xlabel('t, h')
+plt.ylabel('glucose, mg/dl')
+plt.xticks(rotation=45) 
+plt.title('Glucose fluctuations')
+plt.minorticks_on()
+plt.grid(True)
+
+# Adjust limits as needed to fit your actual data bounds
+
+
+plt.savefig('glucose_plot.png', dpi=300, bbox_inches='tight')
+print("Plot saved as glucose_plot.png")
+
