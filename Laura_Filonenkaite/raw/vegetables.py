@@ -92,7 +92,33 @@ food_counts=core['Food'].value_counts()
 food_repeat=food_counts[food_counts>1].index
 comparison_subset=core[core["Food"].isin(food_repeat)]
 print("\n--- COMPARISON FOR REPEATED FOODS ---")
-print(comparison_subset[["Food", "Salad", "Spike", "Duration"]])
+print(comparison_subset[["Time", "Food", "Salad", "Spike", "Duration"]])
 
-      
+
+# adding user input
+
+while True:
+  users_day = input ("I want to see graph of the day (in such form: 2026-03-03) or quit if you want to leave:")
+  if users_day =='quit':
+    print("Exiting graph viewer. Have a great day!")
+    break 
+  single_day_df=df[df["date"]==users_day]  #You are telling Pandas: "Look at that True/False list. Keep only the rows where it is True, and throw away all the rows where it is False."
+
+
+  day_time = single_day_df["hour"]
+  glucose = single_day_df["glucose_mg_dl"]
+  plt.figure(figsize=(10, 5))
+  plt.plot(day_time, glucose,
+      marker="o",
+      markersize=3,
+      linestyle="-",
+      color="teal",
+  )
+  plt.xlabel("Date & Time")
+  plt.ylabel("Glucose, mg/dl")
+  plt.xticks(rotation=45)
+  plt.title(f"Glucose Fluctuations of the {users_day}")
+  plt.minorticks_on()
+  plt.grid(True)
+  plt.show()
   
