@@ -1,0 +1,7 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Optional: ignore generated plot images if you don't want them tracked
+*.png
